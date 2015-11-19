@@ -95,15 +95,13 @@ function createNewEntry(questions){
     addressBook.entries[addressBookLength] = answers;
  //   console.log(addressBook);
   showTable(addressBookLength);
+   console.log("Lets just Update that!");
+    editQuestions(0);
   });
-    
+   
 }
 
 createNewEntry(questions);
-//createNewEntry(questions);
-
-//console.log(addressBook);
-
 
 function showTable(entityIndex){
     
@@ -127,4 +125,111 @@ function showTable(entityIndex){
     console.log(table.toString());
    
 }
+
+
+function showEditTable(entityIndex){
+    
+    var table = new Table({
+                        
+                    chars: {'top': '═' , 'top-mid': '╤' , 'top-left': '╔' , 'top-right': '╗', 'bottom': '═' ,
+                            'bottom-mid': '╧' , 'bottom-left': '╚' , 'bottom-right': '╝', 'right': '║' ,
+                            'left': '║' , 'left-mid': '╟' , 'mid': '─' , 'mid-mid': '┼',
+                            'right-mid': '╢' , 'middle': '│' }
+    });
+    
+                       
+    table.push( 
+        ["First Name", addressBook.entries[entityIndex].editFirstName],
+        ["Last Name", addressBook.entries[entityIndex].editLastName],
+        ["Birthday", addressBook.entries[entityIndex].editBirthday],
+        ["Addresses", addressBook.entries[entityIndex].editHomeAddress +"\n"+addressBook.entries[entityIndex].editCity+", "+addressBook.entries[entityIndex].editProvince+" "+addressBook.entries[entityIndex].editPostalCode+"\n"+addressBook.entries[entityIndex].editCountry],
+        ["Phones", addressBook.entries[entityIndex].editPhoneNumber],
+        ["Emails", addressBook.entries[entityIndex].editEmail]
+    );
+    console.log(table.toString());
+   
+}
+
+
+
+function editQuestions(editIndex){
+  
+var questions = [
+  {
+    type: "input",
+    name: "editFirstName",
+    message: "First name:"
+  },
+  {
+    type: "input",
+    name: "editLastName",
+    message: "Last name:"
+  },
+  {
+    type: "input",
+    name: "editBirthday",
+    message: "Birthday:"
+  },
+  {
+    type: "input",
+    name: "editHomeAddress",
+    message: "Home address:"
+  },
+  {
+    type: "input",
+    name: "editCity",
+    message: "City:"
+  },
+{
+    type: "input",
+    name: "editProvince",
+    message: "Province:"
+  },
+{
+    type: "input",
+    name: "editPostalCode",
+    message: "Postal Code:"
+  },
+{
+    type: "input",
+    name: "editCountry",
+    message: "Country:"
+  },
+{
+    type: "input",
+    name: "editPhoneNumber",
+    message: "Phone Number:"
+  },
+{
+    type: "input",
+    name: "editEmail",
+    message: "Email:"
+  }
+];
+
+
+  editEntry(questions,editIndex);
+}
+
+
+function editEntry(questions,editIndex){
+  
+  inquirer.prompt( questions, function( answers ) {
+    
+   
+    var addressBookLength = addressBook.entries.length;
+    addressBook.entries[addressBookLength] = answers;
+    
+ //   console.log(addressBookLength);
+ //   console.log(addressBook.entries[addressBookLength]);
+    showEditTable(addressBookLength);
+    if(editIndex !== undefined){
+
+      addressBook.entries.splice(editIndex,1);
+   //   console.log(addressBook.entries[editIndex]);
+    }
+  });
+    
+}
+
 
