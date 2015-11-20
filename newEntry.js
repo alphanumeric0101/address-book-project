@@ -2,6 +2,7 @@ var inquirer = require("inquirer");
 var Table = require('cli-table');
 var addressBook = {entries: []};
 
+  
 var questions = [
     {
     type: "string",
@@ -27,9 +28,9 @@ var questions = [
     {
     type: "string",
     name: "homeAddressLine1",
-    message: "Address Line?",
+    message: "Address Line (home)?",
     when: function (answers){
-        console.log(answers.addressType);
+     //   console.log(answers.addressType);
         for (var i in answers.addressType){
             if(answers.addressType[i]==="home") return true;
         }
@@ -95,7 +96,7 @@ var questions = [
     {
     type: "string",
     name: "workAddressLine1",
-    message: "Address Line?",
+    message: "Address Line (work)?",
     when: function (answers){
         for (var i in answers.addressType){
             if(answers.addressType[i]==="work") return true;
@@ -162,7 +163,7 @@ var questions = [
     {
     type: "string",
     name: "otherAddressLine1",
-    message: "Address Line?",
+    message: "Address Line (other)?",
     when: function (answers){
         for (var i in answers.addressType){
             if(answers.addressType[i]==="other") return true;
@@ -239,9 +240,9 @@ var questions = [
     {
     type: "string",
     name: "cellPhone",
-    message: "Phone Number?",
+    message: "Phone Number (cell)?",
     when: function (answers){
-        console.log(answers.phoneType);
+     //   console.log(answers.phoneType);
         for (var i in answers.phoneType){
             if(answers.phoneType[i]==="cell") return true;
         }
@@ -253,7 +254,7 @@ var questions = [
     {
     type: "string",
     name: "homePhone",
-    message: "Phone Number?",
+    message: "Phone Number (home)?",
         when: function (answers){
         for (var i in answers.phoneType){
             if(answers.phoneType[i]==="home") return true;
@@ -266,7 +267,7 @@ var questions = [
     {
     type: "string",
     name: "faxPhone",
-    message: "Phone Number?",
+    message: "Phone Number (fax)?",
         when: function (answers){
         for (var i in answers.phoneType){
             if(answers.phoneType[i]==="fax") return true;
@@ -279,7 +280,7 @@ var questions = [
     {
     type: "string",
     name: "otherPhone",
-    message: "Phone Number?",
+    message: "Phone Number (other)?",
         when: function (answers){
         for (var i in answers.phoneType){
             if(answers.phoneType[i]==="other") return true;
@@ -298,9 +299,9 @@ var questions = [
     {
     type: "string",
     name: "homeEmail",
-    message: "Email Address?",
+    message: "Email Address (home)?",
         when: function (answers){
-            console.log(answers.emailType);
+    //        console.log(answers.emailType);
         for (var i in answers.emailType){
             if(answers.emailType[i]==="home") return true;
         }
@@ -312,7 +313,7 @@ var questions = [
     {
     type: "string",
     name: "workEmail",
-    message: "Email Address?",
+    message: "Email Address (work)?",
             when: function (answers){
         for (var i in answers.emailType){
             if(answers.emailType[i]==="work") return true;
@@ -325,7 +326,7 @@ var questions = [
     {
     type: "string",
     name: "otherEmail",
-    message: "Email Address?",
+    message: "Email Address (other)?",
             when: function (answers){
         for (var i in answers.emailType){
             if(answers.emailType[i]==="other") return true;
@@ -335,54 +336,6 @@ var questions = [
 }
 ];
 
-// questions.push(firstName);
-// questions.push(lastName);
-// questions.push(birthDay);
-
-// questions.push(addressType);
-// questions.push(homeAddressLine1);
-// questions.push(homeAddressLine2);
-// questions.push(homeCity);
-// questions.push(homeProvince);
-// questions.push(homePostalCode);
-// questions.push(homeCountry);
-
-// questions.push(addressType);
-// questions.push(workAddressLine1);
-// questions.push(workAddressLine2);
-// questions.push(workCity);
-// questions.push(workProvince);
-// questions.push(workPostalCode);
-// questions.push(workCountry);
-
-// questions.push(addressType);
-// questions.push(otherAddressLine1);
-// questions.push(otherAddressLine2);
-// questions.push(otherCity);
-// questions.push(otherProvince);
-// questions.push(otherPostalCode);
-// questions.push(otherCountry);
-
-// questions.push(cellPhoneType);
-// questions.push(cellPhone);
-
-// questions.push(homePhoneType);
-// questions.push(homePhone);
-
-// questions.push(faxPhoneType);
-// questions.push(faxPhone);
-
-// questions.push(otherPhoneType);
-// questions.push(otherPhone);
-
-// questions.push(homeEmailType);
-// questions.push(homeEmail);
-
-// questions.push(workEmailType);
-// questions.push(workEmail);
-
-// questions.push(otherEmailType);
-// questions.push(otherEmail);
 
 
 function createNewEntry(questions){
@@ -391,7 +344,7 @@ function createNewEntry(questions){
     
     var addressBookLength = addressBook.entries.length;
     addressBook.entries[addressBookLength] = answers;
-    console.log(addressBook);
+  //  console.log(addressBook);
   showTable(addressBookLength);
    console.log("Lets just Update that!");
     editQuestions(0);
@@ -480,89 +433,373 @@ if(addressBook.entries[entityIndex].otherEmail !== undefined){
 }
 
 
-function showEditTable(entityIndex){
+// function showEditTable(entityIndex){
     
-    var table = new Table({
+//     var table = new Table({
                         
-                    chars: {'top': '═' , 'top-mid': '╤' , 'top-left': '╔' , 'top-right': '╗', 'bottom': '═' ,
-                            'bottom-mid': '╧' , 'bottom-left': '╚' , 'bottom-right': '╝', 'right': '║' ,
-                            'left': '║' , 'left-mid': '╟' , 'mid': '─' , 'mid-mid': '┼',
-                            'right-mid': '╢' , 'middle': '│' }
-    });
+//                     chars: {'top': '═' , 'top-mid': '╤' , 'top-left': '╔' , 'top-right': '╗', 'bottom': '═' ,
+//                             'bottom-mid': '╧' , 'bottom-left': '╚' , 'bottom-right': '╝', 'right': '║' ,
+//                             'left': '║' , 'left-mid': '╟' , 'mid': '─' , 'mid-mid': '┼',
+//                             'right-mid': '╢' , 'middle': '│' }
+//     });
     
                        
-    table.push( 
-        ["First Name", addressBook.entries[entityIndex].editFirstName],
-        ["Last Name", addressBook.entries[entityIndex].editLastName],
-        ["Birthday", addressBook.entries[entityIndex].editBirthday],
-        ["Addresses", addressBook.entries[entityIndex].editHomeAddress +"\n"+addressBook.entries[entityIndex].editCity+", "+addressBook.entries[entityIndex].editProvince+" "+addressBook.entries[entityIndex].editPostalCode+"\n"+addressBook.entries[entityIndex].editCountry],
-        ["Phones", addressBook.entries[entityIndex].editPhoneNumber],
-        ["Emails", addressBook.entries[entityIndex].editEmail]
-    );
-    console.log(table.toString());
+//     table.push( 
+//         ["First Name", addressBook.entries[entityIndex].editFirstName],
+//         ["Last Name", addressBook.entries[entityIndex].editLastName],
+//         ["Birthday", addressBook.entries[entityIndex].editBirthday],
+//         ["Addresses", addressBook.entries[entityIndex].editHomeAddress +"\n"+addressBook.entries[entityIndex].editCity+", "+addressBook.entries[entityIndex].editProvince+" "+addressBook.entries[entityIndex].editPostalCode+"\n"+addressBook.entries[entityIndex].editCountry],
+//         ["Phones", addressBook.entries[entityIndex].editPhoneNumber],
+//         ["Emails", addressBook.entries[entityIndex].editEmail]
+//     );
+//     console.log(table.toString());
    
-}
+// }
 
 
 
 function editQuestions(editIndex){
   
 var questions = [
-  {
-    type: "input",
-    name: "editFirstName",
-    message: "First name:"
-  },
-  {
-    type: "input",
-    name: "editLastName",
-    message: "Last name:"
-  },
-  {
-    type: "input",
-    name: "editBirthday",
-    message: "Birthday:"
-  },
-  {
-    type: "input",
-    name: "editHomeAddress",
-    message: "Home address:"
-  },
-  {
-    type: "input",
-    name: "editCity",
-    message: "City:"
-  },
-{
-    type: "input",
-    name: "editProvince",
-    message: "Province:"
-  },
-{
-    type: "input",
-    name: "editPostalCode",
-    message: "Postal Code:"
-  },
-{
-    type: "input",
-    name: "editCountry",
-    message: "Country:"
-  },
-{
-    type: "input",
-    name: "editPhoneNumber",
-    message: "Phone Number:"
-  },
-{
-    type: "input",
-    name: "editEmail",
-    message: "Email:"
-  }
+    {
+    type: "string",
+    name: "firstName",
+    message: "First name?"
+},
+    {
+    type: "string",
+    name: "lastName",
+    message: "Last name?"
+},
+    {
+    type: "string",
+    name: "birthDay",
+    message: "Birth Day?"
+},
+    {
+    type: "checkbox",
+    name: "addressType",
+    message: "Home, Work, or other Address?",
+    choices: ["home","work", "other"]
+},
+    {
+    type: "string",
+    name: "homeAddressLine1",
+    message: "Address Line (home)?",
+    when: function (answers){
+    //    console.log(answers.addressType);
+        for (var i in answers.addressType){
+            if(answers.addressType[i]==="home") return true;
+        }
+        return false;
+    }
+},
+    {
+    type: "string",
+    name: "homeAddressLine2",
+    message: "Address Line 2 (optional)?",
+    when: function (answers){
+        for (var i in answers.addressType){
+            if(answers.addressType[i]==="home") return true;
+        }
+        return false;
+    }
+},
+    {
+    type: "string",
+    name: "homeCity",
+    message: "City?",
+    when: function (answers){
+        for (var i in answers.addressType){
+            if(answers.addressType[i]==="home") return true;
+        }
+        return false;
+    }
+},
+    {
+    type: "string",
+    name: "homeProvince",
+    message: "Province?",
+    when: function (answers){
+        for (var i in answers.addressType){
+            if(answers.addressType[i]==="home") return true;
+        }
+        return false;
+    }
+},
+    {
+    type: "string",
+    name: "homePostalCode",
+    message: "Postal Code?",
+    when: function (answers){
+        for (var i in answers.addressType){
+            if(answers.addressType[i]==="home") return true;
+        }
+        return false;
+    }
+},
+    {
+    type: "string",
+    name: "homeCountry",
+    message: "Country?",
+    when: function (answers){
+        for (var i in answers.addressType){
+            if(answers.addressType[i]==="home") return true;
+        }
+        return false;
+    }
+},
+
+    {
+    type: "string",
+    name: "workAddressLine1",
+    message: "Address Line (work)?",
+    when: function (answers){
+        for (var i in answers.addressType){
+            if(answers.addressType[i]==="work") return true;
+        }
+        return false;
+    }
+},
+    {
+    type: "string",
+    name: "workAddressLine2",
+    message: "Address Line (optional)?",
+    when: function (answers){
+        for (var i in answers.addressType){
+            if(answers.addressType[i]==="work") return true;
+        }
+        return false;
+    }
+},
+    {
+    type: "string",
+    name: "workCity",
+    message: "City?",
+    when: function (answers){
+        for (var i in answers.addressType){
+            if(answers.addressType[i]==="work") return true;
+        }
+        return false;
+    }
+},
+    {
+    type: "string",
+    name: "workProvince",
+    message: "Province?",
+    when: function (answers){
+        for (var i in answers.addressType){
+            if(answers.addressType[i]==="work") return true;
+        }
+        return false;
+    }
+},
+    {
+    type: "string",
+    name: "workPostalCode",
+    message: "Postal Code?",
+    when: function (answers){
+        for (var i in answers.addressType){
+            if(answers.addressType[i]==="work") return true;
+        }
+        return false;
+    }
+},
+    {
+    type: "string",
+    name: "workCountry",
+    message: "Country?",
+    when: function (answers){
+        for (var i in answers.addressType){
+            if(answers.addressType[i]==="work") return true;
+        }
+        return false;
+    }
+},
+
+    {
+    type: "string",
+    name: "otherAddressLine1",
+    message: "Address Line (other)?",
+    when: function (answers){
+        for (var i in answers.addressType){
+            if(answers.addressType[i]==="other") return true;
+        }
+        return false;
+    }
+},
+    {
+    type: "string",
+    name: "otherAddressLine2",
+    message: "Address Line (optional)?",
+    when: function (answers){
+        for (var i in answers.addressType){
+            if(answers.addressType[i]==="other") return true;
+        }
+        return false;
+    }
+},
+    {
+    type: "string",
+    name: "otherCity",
+    message: "City?",
+    when: function (answers){
+        for (var i in answers.addressType){
+            if(answers.addressType[i]==="other") return true;
+        }
+        return false;
+    }
+},
+    {
+    type: "string",
+    name: "otherProvince",
+    message: "Province?",
+    when: function (answers){
+        for (var i in answers.addressType){
+            if(answers.addressType[i]==="other") return true;
+        }
+        return false;
+    }
+},
+    {
+    type: "string",
+    name: "otherPostalCode",
+    message: "Postal Code?",
+    when: function (answers){
+        for (var i in answers.addressType){
+            if(answers.addressType[i]==="other") return true;
+        }
+        return false;
+    }
+},
+    {
+    type: "string",
+    name: "otherCountry",
+    message: "Country?",
+    when: function (answers){
+        for (var i in answers.addressType){
+            if(answers.addressType[i]==="other") return true;
+        }
+        return false;
+    }
+},
+
+    {
+    type: "checkbox",
+    name: "phoneType",
+    message: "Cell, Home, Fax, or other phone numbers?",
+    choices: ["cell", "home","fax", "other"]
+},
+
+
+
+
+    {
+    type: "string",
+    name: "cellPhone",
+    message: "Phone Number (cell)?",
+    when: function (answers){
+     //   console.log(answers.phoneType);
+        for (var i in answers.phoneType){
+            if(answers.phoneType[i]==="cell") return true;
+        }
+        return false;
+    }
+},
+
+
+    {
+    type: "string",
+    name: "homePhone",
+    message: "Phone Number (home)?",
+        when: function (answers){
+        for (var i in answers.phoneType){
+            if(answers.phoneType[i]==="home") return true;
+        }
+        return false;
+    }
+},
+
+
+    {
+    type: "string",
+    name: "faxPhone",
+    message: "Phone Number (fax)?",
+        when: function (answers){
+        for (var i in answers.phoneType){
+            if(answers.phoneType[i]==="fax") return true;
+        }
+        return false;
+    }
+},
+
+
+    {
+    type: "string",
+    name: "otherPhone",
+    message: "Phone Number (other)?",
+        when: function (answers){
+        for (var i in answers.phoneType){
+            if(answers.phoneType[i]==="other") return true;
+        }
+        return false;
+    }
+},
+
+
+    {
+    type: "checkbox",
+    name: "emailType",
+    message: "Home or Work email Address?",
+    choices: ["home","work","other"]
+},
+    {
+    type: "string",
+    name: "homeEmail",
+    message: "Email Address (home)?",
+        when: function (answers){
+     //       console.log(answers.emailType);
+        for (var i in answers.emailType){
+            if(answers.emailType[i]==="home") return true;
+        }
+        return false;
+    }
+},
+
+
+    {
+    type: "string",
+    name: "workEmail",
+    message: "Email Address (work)?",
+            when: function (answers){
+        for (var i in answers.emailType){
+            if(answers.emailType[i]==="work") return true;
+        }
+        return false;
+    }
+},
+
+
+    {
+    type: "string",
+    name: "otherEmail",
+    message: "Email Address (other)?",
+            when: function (answers){
+        for (var i in answers.emailType){
+            if(answers.emailType[i]==="other") return true;
+        }
+        return false;
+    }
+}
 ];
+
+
+
 
 
   editEntry(questions,editIndex);
 }
+
 
 
 function editEntry(questions,editIndex){
@@ -575,7 +812,7 @@ function editEntry(questions,editIndex){
     
  //   console.log(addressBookLength);
  //   console.log(addressBook.entries[addressBookLength]);
-    showEditTable(addressBookLength);
+    showTable(addressBookLength);
     if(editIndex !== undefined){
 
       addressBook.entries.splice(editIndex,1);
